@@ -1,11 +1,22 @@
 {
+  "private": true,
   "name": "babylon-sandbox",
-  "version": "1.0.0",
   "description": "babylon.js sandbox",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "asset": "cp src/index.html public",
+    "before": "mkdir -p public",
+    "bundle": "browserify src/index.js -o public/index.js",
+    "bundle-dev": "browserifyinc src/index.js -o public/index.js",
+    "serve": "static public -p 9999",
+    "watch": "chokidar 'src/index.js' -c 'npm run bundle-dev'"
   },
   "author": "jigsaw (http://jgs.me)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "browserify": "^13.1.1",
+    "browserify-incremental": "^3.1.1",
+    "chokidar-cli": "^1.2.0",
+    "node-static": "^0.7.9"
+  }
 }
